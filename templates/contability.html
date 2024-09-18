@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #b9fbc0); /* Gradient background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 65%;
+            background-color: #ffffff; /* White background for the card */
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .header {
+            font-size: 24px;
+            text-align: center;
+            background-color: #00796b; /* Darker teal for the header */
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .header .back-button, .header .add-button {
+            position: absolute;
+            top: 15px;
+            background-color: #004d40; /* Darker teal for the button */
+            color: #ffffff;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .header .back-button {
+            left: 15px;
+        }
+
+        .header .add-button {
+            right: 15px;
+        }
+
+        .expense-box {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: 10px;
+        }
+
+        .expense-box ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .expense-box li {
+            border-bottom: 1px solid #ddd;
+            padding: 20px 0;
+            text-align: center;
+            font-size:24px;
+        }
+
+        .expense-box li:last-child {
+            border-bottom: none;
+        }
+
+        .expense-button {
+            display: block;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .expense-button:hover {
+            background-color: #e0e0e0;
+            color: #000;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Contabilità</h1>
+            <button class="back-button" onclick="redirect();">&lt;</button>
+            <button class="add-button" onclick="add()">+</button>
+        </div>
+        
+        {% if spese %}
+            <div class="expense-box">
+                <ul>
+                    {% for spesa in spese %}
+                        <li>
+                            <a href="{% url 'modificaSpesa' spesa.id %}" class="expense-button">
+                                <strong>Cosa:</strong> {{ spesa.cosa }} <br>
+                                <strong>Quanto:</strong> €{{ spesa.quanto }} <br>
+                                <strong>Quando:</strong> {{ spesa.data|date:"d/m/Y" }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            <p>Nessuna spesa disponibile.</p>
+        {% endif %}
+    </div>
+
+    <script>
+        function add() {
+            window.location.href = "/creazioneSpesa";
+        }
+
+        function redirect() {
+            window.location.href = "/action";
+        }
+    </script>
+</body>
+</html>

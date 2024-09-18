@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #b9fbc0); /* Gradient background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+    
+
+        .container {
+            width: 100%;
+            max-width: 65%;
+            background-color: #ffffff; /* White background for the card */
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .header {
+            font-size: 20px;
+            text-align: center;
+            background-color: #00796b; /* Darker teal for the header */
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .header .back-button {
+            position: absolute;
+            left: 15px;
+            top: 40px;
+            background-color: #004d40; /* Even darker teal for the button */
+            color: #ffffff;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+        .header .add-button {
+            position: absolute;
+            right: 15px;
+            top: 40px;
+            background-color: #004d40; /* Even darker teal for the button */
+            color: #ffffff;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+        .expense-box {
+            background-color: #ffffff; /* White background for the expense box */
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: 10px;
+            text-align: center;
+        }
+        .expense-box ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .expense-box li {
+            border-bottom: 1px solid #ddd;
+            padding: 20px 0;
+            font-size: 24px;
+        }
+        .expense-box li:last-child {
+            border-bottom: none;
+        }
+        .expense-button {
+    display: block;
+    padding: 10px;
+    background-color: #f5f5f5; /* Background color for buttons */
+    border: 1px solid #ddd; /* Border color */
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.expense-button:hover {
+    background-color: #e0e0e0; /* Change background color on hover */
+    color: #000;
+}
+</style>
+<body>
+        <div class="container">
+            <div class="header">
+                <h1>Il Branco</h1>
+                <button class="back-button" onclick="redirect();"><</button>
+                 <button class="add-button"onclick="add()">+</button>
+            </div>
+            {% if persone %}
+                <div class="expense-box">
+                    <ul>
+                        {% for persona in persone %}
+                            <li>
+                             <a href="{% url 'modificaPersona' persona.id %}" class="expense-button">
+                                <strong>Nome</strong> {{ persona.nome }} <br>
+                                <strong>Cognome</strong> {{ persona.cognome }} <br>
+                                <strong>Quando:</strong> {{ persona.data|date:"d/m/Y" }}<br>
+<strong>Sesso</strong> 
+{% if persona.sex %}
+    Femmina
+{% else %}
+    Maschio
+{% endif %}
+                                 </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% else %}
+                <p>Nessun membro disponibile.</p>
+            {% endif %}
+            </div>
+     
+<script>
+    function add(){
+        window.location.href="/creazionePersona"
+    }
+    function redirect(){
+        window.location.href="/action"
+    }
+</script>
+</body>
+</html>

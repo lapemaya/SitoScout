@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crea Nuovo Utente</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #b9fbc0); /* Gradient background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container-wrapper {
+            width: 100%;
+            display: flex;
+            align-items: center; /* Center items vertically */
+            justify-content: center;
+            min-height: 100vh; /* Full viewport height */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background-color: #ffffff; /* White background for the card */
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .header {
+            font-size: 24px;
+            text-align: center;
+            background-color: #00796b; /* Darker teal for the header */
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .header .back-button {
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            background-color: #004d40; /* Even darker teal for the button */
+            color: #ffffff;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #00796b;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #00796b;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #004d40;
+        }
+
+        .message {
+            font-size: 14px;
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container-wrapper">
+        <div class="container">
+            <div class="header">
+                Crea Nuovo Utente
+                <button class="back-button" onclick="window.history.back();"><</button>
+            </div>
+
+            <form action="/create_user" method="POST">
+                {% csrf_token %}
+                <input type="text" name="username" placeholder="Nome Utente" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="confirm_password" placeholder="Conferma Password" required>
+                <button type="submit">Crea Utente</button>
+            </form>
+
+            <div class="message">
+                {% if message %}
+                    <p>{{ message}}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

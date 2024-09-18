@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #b9fbc0); /* Gradient background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-size:24px
+        }
+
+        .container {
+            width: 100%;
+            max-width: 65%;
+            background-color: #ffffff; /* White background for the card */
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .header {
+            font-size: 20px;
+            text-align: center;
+            background-color: #00796b; /* Darker teal for the header */
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .header .back-button {
+            position: absolute;
+            left: 15px;
+            top: 40px;
+            background-color: #004d40; /* Even darker teal for the button */
+            color: #ffffff;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .form-check {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Allinea orizzontalmente i radio button */
+            width: 100%; /* Occupa l'intera larghezza */
+        }
+
+        input[type="text"], input[type="date"], input[type="number"] ,input[type="radio"]{
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #00796b;
+            font-size: 24px;
+            text-align: center;
+        }
+        button {
+            padding: 10px;
+            background-color: #00796b;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #004d40;
+        }
+
+</style>
+<body>
+
+        <div class="container">
+            <div class="header">
+                <h1>Crea Nuovo Membro</h1>
+                <button class="back-button" onclick="window.history.back();"><</button>
+            </div>
+            <form action="/creazionePersona" method="POST">
+                {% csrf_token %}
+                <input type="text" name="nome" placeholder="Nome" required>
+                <input type="text" name="cognome" placeholder="Cognome" required>
+                <input type="date" name="data" placeholder="Data di Nascita" required>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="maschio" checked>
+                    <label class="form-check-label" for="flexRadioDefault1">    
+                    Maschio
+                        </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="femmina" >
+                     <label class="form-check-label" for="flexRadioDefault2">
+                    Femmina
+                         </label>
+                </div>
+                <input type="text" name="note" placeholder="Note">
+                <button type="submit">Conferma</button>
+            </form>
+            </div>
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #b9fbc0); /* Gradient background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container-wrapper {
+            width: 100%;
+            display: flex;
+            align-items: center; /* Center items vertically */
+            justify-content: center;
+            min-height: 100vh; /* Full viewport height */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background-color: #ffffff; /* White background for the card */
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .header {
+            font-size: 24px;
+            text-align: center;
+            background-color: #00796b; /* Darker teal for the header */
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            position: relative;
+            width: 60%;
+        }
+
+        .modal-content {
+            background-color: #ffffff; /* White background for the modal */
+            border-radius: 15px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .modal-content h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #00796b;
+        }
+
+        .modal-content input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #00796b;
+        }
+
+        .modal-content button {
+            padding: 10px;
+            width: 100%;
+            background-color: #00796b;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal-content button:hover {
+            background-color: #004d40;
+        }
+
+        .create-account {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #00796b;
+        }
+
+        .create-account a {
+            color: #004d40;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .create-account a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-wrapper">
+        <div class="container">
+            <div class="header">
+                <h1>Login</h1>
+            </div>
+            <form action="/login" method="post">
+                {% csrf_token %}
+                <div class="modal-content">
+                    <h2>Inserisci le tue credenziali</h2>
+                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                </div>
+            </form>
+            <div class="create-account">
+                Non hai un account? <a href="/create_user">Crea un nuovo account</a>
+            </div>
+            <div class="message">
+                {% if message %}
+                    <p>{{ message }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

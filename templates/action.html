@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulsanti Quadrati</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        .full-height {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #e0f7fa, #b9fbc0); /* Gradient background */
+        }
+        .grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 150px); /* Aumenta la larghezza */
+    grid-template-rows: repeat(2, 150px);    /* Aumenta l'altezza */
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+        .btn-square {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            background-color: #004d40; /* Darker teal color */
+            border-color: #004d40; /* Match border color */
+        }
+        .btn-square:hover {
+            background-color: #00796b; /* Lighter teal color on hover */
+            border-color: #00796b;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid d-flex justify-content-center align-items-center full-height">
+    <div class="grid-container">
+        <a href="/calculator" class="btn btn-square">Calcolatore</a>
+        <a href="/contability" class="btn btn-square">Contabilità</a>
+        <a href="/conti" class="btn btn-square">Conto</a>
+        <a href="/branco" class="btn btn-square">Membri</a>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
